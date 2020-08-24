@@ -1,36 +1,55 @@
 import React from "react"
-import Helmet from "react-helmet"
+import Helmet from 'react-helmet';
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
+import PostLink from "../components/post-link"
 
 const EventsPage = ({
   data: {
-    site
+    site,
+    allMarkdownRemark: { edges },
   },
 }) => {
+
+  const Posts = edges
+    .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
+    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+
   return (
     <Layout>
       <Helmet>
-        <title>Contact — {site.siteMetadata.title}</title>
-        <meta name="description" content={"Contact page of " + site.siteMetadata.description} />
+        <title>{site.siteMetadata.title}</title>
+        <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
-      <div className="two-grids -contact">
-        <div className="post-thumbnail" style={{backgroundImage: `url('/assets/alexander-andrews-HgUDpaGPTEA-unsplash.jpg')`, marginBottom: 0}}>
-          <h1 className="post-title">Get in Touch</h1>
-          <p>Let me help you kick start your next project &rarr;</p>
-        </div>
-        
+      <h2>Filipino Events &darr;</h2>
+      <div className="grids">
+        {Posts}
       </div>
     </Layout>
   )
 }
+
 export default EventsPage
 export const pageQuery = graphql`
-  query EventsPageQuery{
+  query eventsPageQuery {
     site {
       siteMetadata {
         title
         description
+      }
+    }
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 250)
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            path
+            title
+            thumbnail
+          }
+        }
       }
     }
   }
