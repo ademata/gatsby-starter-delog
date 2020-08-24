@@ -21,8 +21,8 @@ const Navigation = () => {
       <Link to="/exchange">Exchange Rate</Link>
       <Link to="/balikbayan">Balikbayan Box</Link>
       <Link to="/contact">Contact</Link>
-      <button onClick={() => login()}>Login</button>
-      <button onClick={() => logout()}>Logout</button>
+      {/* <button onClick={() => login()}>Login</button>
+      <button onClick={() => logout()}>Logout</button> */}
       <ThemeChanger/>  
     </nav> 
   )
