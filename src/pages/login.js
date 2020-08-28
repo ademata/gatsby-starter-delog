@@ -60,7 +60,7 @@ import {Header, Form, Input, Button, Segment, Message, Container} from 'semantic
 //import AuthContext from '../components/Context/AuthContext'
 import Layout from '../components/layout'
 //import useForm from '../components/Hooks/useForm'
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.css'
 
 const LoginPage = ({location}) => {
   const [loading, setLoading] = useState(false)
