@@ -142,9 +142,9 @@ const LoginPage = ({location}) => {
             />
           </Form.Field>
           {/* {errors.password && <p style={{color: 'red'}}>{errors.password}</p>} */}
-          <Button type="submit" color="yellow">
-            Login
-          </Button>
+          <button class="ui button" type="submit" style={{backgroundColor: "#381696"}}>
+            <span style={{color: "#e9e7f4"}}>Login</span>
+          </button>
         </Segment>
       </Form>
     </div>
